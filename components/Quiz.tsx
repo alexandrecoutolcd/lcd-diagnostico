@@ -95,10 +95,14 @@ export default function Quiz() {
       phone: data.phone,
       role: data.role,
       revenue: selectedRevenue?.label || "",
-      overallScore: overall,
-      weakestArea: weakest.label,
-      recommendation: recommendationTitle,
-      blockScores: blockScores.reduce((acc: Record<string, string>, b) => {
+      // Score geral de maturidade (0 a 100)
+      scoreGeral: overall,
+      // Nome da área com menor pontuação (o ponto mais crítico do diagnóstico)
+      areaCritica: weakest.label,
+      // Produto/solução recomendada com base no faturamento e na área crítica
+      recomendacao: recommendationTitle,
+      // Score de cada um dos 6 blocos, ex: {"Lucratividade":"27%","Controladoria":"22%",...}
+      scoresPorBloco: blockScores.reduce((acc: Record<string, string>, b) => {
         acc[b.label] = `${b.pct}%`;
         return acc;
       }, {}),
