@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fundo */
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --card-secondary: #fbfcfe;
+
+  /* Bordas */
+  --border: #e5eaf2;
+  --border-strong: #d6dee8;
+  --divider: #eef2f7;
+
+  /* Textos */
+  --heading: #172b4d;
+  --body: #42526e;
+  --body-secondary: #6b778c;
+  --muted: #a5adba;
+
+  /* Identidade / CTA */
+  --brand: #c41d33;
+  --brand-hover: #a5172b;
+  --brand-light: #fcecef;
+  --brand-xlight: #fff5f6;
+
+  /* Indicadores positivos (azul) */
+  --accent-pos: #2563eb;
+  --accent-pos-hover: #1d4ed8;
+  --accent-pos-light: #dbeafe;
+  --accent-big-pos: #2563eb;
+
+  /* Indicadores negativos (vermelho) */
+  --accent-neg: #dc2626;
+  --accent-neg-hover: #b91c1c;
+  --accent-neg-light: #fee2e2;
+
+  /* Alerta */
+  --alert: #f59e0b;
+  --alert-light: #fef3c7;
+
+  /* Zonas de maturidade (fraco -> forte) */
+  --zone-1: #dc2626;
+  --zone-2: #f59e0b;
+  --zone-3: #2563eb;
+  --zone-4: #16a34a;
+  --zone-5: #c41d33;
+
+  /* Sombras */
+  --shadow-sm: rgba(15, 23, 42, 0.04);
+  --shadow-md: rgba(15, 23, 42, 0.08);
+  --shadow-lg: rgba(15, 23, 42, 0.12);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--body);
+}
+
+body {
+  font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
+  font-weight: 400;
+}
+
+.heading {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 1px 2px var(--shadow-sm), 0 8px 24px -8px var(--shadow-md);
+}
+
+.mono-num {
+  font-family: var(--font-poppins), "Poppins", sans-serif;
+  font-feature-settings: "tnum";
+}
+
+.df-fadeup {
+  animation: dfFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes dfFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.df-delay-1 { animation-delay: 0.06s; }
+.df-delay-2 { animation-delay: 0.12s; }
+.df-delay-3 { animation-delay: 0.18s; }
+.df-delay-4 { animation-delay: 0.24s; }
+
+.df-pulse {
+  animation: dfPulse 1.8s ease-in-out infinite;
+}
+@keyframes dfPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+/* ── Barra de progresso do quiz ── */
+.quiz-progress-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 999px;
+  width: 100%;
+  overflow: hidden;
+}
+.quiz-progress-fill {
+  height: 100%;
+  background: var(--brand);
+  border-radius: 999px;
+  transition: width 0.35s ease;
+}
+
+/* ── Opções de resposta ── */
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: left;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+  color: var(--body);
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+.quiz-option:hover {
+  border-color: var(--brand);
+  background: var(--brand-xlight);
+  transform: translateX(2px);
+}
+.quiz-option:active { transform: translateX(0) scale(0.995); }
+.quiz-option:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.quiz-option-index {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.quiz-option:hover .quiz-option-index {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: #fff;
+}
+
+/* ── Barras de resultado por área ── */
+.quiz-bar-track {
+  height: 10px;
+  background: var(--divider);
+  border-radius: 999px;
+  width: 100%;
+  overflow: hidden;
+}
+.quiz-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.quiz-bar-fill.weak { background: var(--accent-neg); }
+.quiz-bar-fill.mid { background: var(--alert); }
+.quiz-bar-fill.strong { background: #16a34a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .df-fadeup,
+  .df-pulse {
+    animation: none !important;
+  }
+}
